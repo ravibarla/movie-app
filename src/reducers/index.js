@@ -1,8 +1,15 @@
 import { ADD_MOVIES } from "../actions/actions";
-export default function movies(state = [], action) {
+//initial state
+const initialMoviesState = {
+  list: [],
+  fav: [],
+};
+export default function movies(state = initialMoviesState, action) {
   if (action.type === ADD_MOVIES) {
-    return action.movies;
+    return {
+      ...state,
+      list: action.movies,
+    };
   }
   return state;
 }
-
