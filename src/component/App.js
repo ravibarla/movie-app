@@ -3,7 +3,7 @@ import "../App.css";
 import { data } from "../data";
 import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
-import { addMovies } from "../actions/actions";
+import { addMovies, setShowFav } from "../actions/actions";
 // import movies from "../reducers";
 class App extends React.Component {
   componentDidMount() {
@@ -27,30 +27,47 @@ class App extends React.Component {
     //movie not found
     return false;
   };
+  onChangeTab = (val) => {
+    this.props.store.dispatch(setShowFav(val));
+  };
   render() {
     // console.log("this props :", this.props);
     // const { store } = this.props;
     // console.log("getState :",store.getState())
-    const { list } = this.props.store.getState();
+    const { list, fav, showFav } = this.props.store.getState();
+    const displayMovies = showFav ? fav : list;
     // console.log("movies :", list);
     return (
       <div className="App">
         <Navbar />
         <div className="main">
           <div className="tabs">
-            <div className="tab">movies</div>
-            <div className="tab">favourites</div>
+            <div
+              className={`tab ${showFav ? "" : "active-tabs"}`}
+              onClick={() => this.onChangeTab(true)}
+            >
+              movies
+            </div>
+            <div
+              className={`tab ${showFav ? "active-tabs" : ""}`}
+              onClick={() => this.onChangeTab(false)}
+            >
+              favourites
+            </div>
           </div>
           <div className="list">
-            {list.map((movie, index) => (
+            {displayMovies.map((movie, index) => (
               <MovieCard
                 movie={movie}
                 key={`movies-${index}`}
                 dispatch={this.props.store.dispatch}
-                isFavourite={this.isMovieFavourite}
+                isFavourite={this.isMovieFavourite(movie)}
               />
             ))}
           </div>
+          {displayMovies.length === 0 ? (
+            <div className="no-movies">no movies to show</div>
+          ) : null}
         </div>
       </div>
     );

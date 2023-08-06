@@ -1,13 +1,14 @@
 import React from "react";
-import { addFav } from "../actions/actions";
+import { addFav, remFav } from "../actions/actions";
 class MovieCard extends React.Component {
   handleFavouriteClick = () => {
     const { movie } = this.props;
     this.props.dispatch(addFav(movie));
   };
-  handleUnfavouriteClick=()=>{
-    
-  }
+  handleUnfavouriteClick = () => {
+    const { movie } = this.props;
+    this.props.dispatch(remFav(movie));
+  };
   render() {
     const { movie, isFavourite } = this.props;
 
@@ -37,6 +38,7 @@ class MovieCard extends React.Component {
               </button>
             )}
           </div>
+          
         </div>
       </div>
     );
