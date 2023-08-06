@@ -10,14 +10,23 @@ class App extends React.Component {
     const { store } = this.props;
     store.subscribe(() => {
       // console.log("updating :");
-      this.forceUpdate()
+      this.forceUpdate();
     });
     //make api call
     //dispatch action
     store.dispatch(addMovies(data));
     // console.log("state :", store.getState());
   }
-
+  isMovieFavourite = (movie) => {
+    const { fav } = this.props.store.getState();
+    const index = fav.indexOf(movie);
+    if (index !== -1) {
+      //found the movie
+      return true;
+    }
+    //movie not found
+    return false;
+  };
   render() {
     // console.log("this props :", this.props);
     // const { store } = this.props;
@@ -34,7 +43,12 @@ class App extends React.Component {
           </div>
           <div className="list">
             {list.map((movie, index) => (
-              <MovieCard movie={movie} key={`list-${index}`} />
+              <MovieCard
+                movie={movie}
+                key={`movies-${index}`}
+                dispatch={this.props.store.dispatch}
+                isFavourite={this.isMovieFavourite}
+              />
             ))}
           </div>
         </div>
