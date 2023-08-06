@@ -5,9 +5,7 @@ import Navbar from "./Navbar";
 import { createStore } from "redux";
 import movies from "../reducers";
 function App() {
-  const store = createStore(movies);
-  console.log("store : ",store)
-  console.log("state :",store.getState())
+ 
   return (
     <div className="App">
       <Navbar />
@@ -17,8 +15,8 @@ function App() {
           <div className="tab">favourites</div>
         </div>
         <div className="list">
-          {data.map((movie) => (
-            <MovieCard movie={movie} />
+          {data.map((movie,index) => (
+            <MovieCard movie={movie} key={`movies-${index}`}/>
           ))}
         </div>
       </div>
