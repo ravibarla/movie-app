@@ -3,17 +3,18 @@ import "../App.css";
 import { data } from "../data";
 import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
-import { addMovie } from "../actions/actions";
+import { addMovies } from "../actions/actions";
 // import movies from "../reducers";
 class App extends React.Component {
   componentDidMount() {
     const { store } = this.props;
     store.subscribe(() => {
       // console.log("updating :");
+      this.forceUpdate()
     });
     //make api call
     //dispatch action
-    store.dispatch(addMovie(data));
+    store.dispatch(addMovies(data));
     // console.log("state :", store.getState());
   }
 
@@ -21,8 +22,8 @@ class App extends React.Component {
     // console.log("this props :", this.props);
     // const { store } = this.props;
     // console.log("getState :",store.getState())
-    // const movies = store.getState();
-    // console.log("movies :", movies);
+    const { list } = this.props.store.getState();
+    // console.log("movies :", list);
     return (
       <div className="App">
         <Navbar />
@@ -32,8 +33,8 @@ class App extends React.Component {
             <div className="tab">favourites</div>
           </div>
           <div className="list">
-            {data.map((movie, index) => (
-              <MovieCard movie={movie} key={`movies-${index}`} />
+            {list.map((movie, index) => (
+              <MovieCard movie={movie} key={`list-${index}`} />
             ))}
           </div>
         </div>
