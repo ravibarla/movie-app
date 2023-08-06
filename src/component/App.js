@@ -13,9 +13,7 @@ class App extends React.Component {
     });
     //make api call
     //dispatch action
-    store.dispatch({
-      addMovie(data)
-    });
+    store.dispatch(addMovie(data));
     // console.log("state :", store.getState());
   }
 
