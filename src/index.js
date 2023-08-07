@@ -4,10 +4,10 @@ import "./index.css";
 import App from "./component/App";
 import { createStore } from "redux";
 
-import movies from "./reducers";
+import rootReducer from "./reducers";
 
 // console.log("mogivies :", movies);
-const store = createStore(movies);
+const store = createStore(rootReducer);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
