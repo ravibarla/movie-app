@@ -6,7 +6,7 @@ import { createStore } from "redux";
 
 import movies from "./reducers";
 
-console.log("movies :", movies);
+// console.log("mogivies :", movies);
 const store = createStore(movies);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

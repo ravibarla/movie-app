@@ -39,9 +39,9 @@ class App extends React.Component {
     const { list, fav, showFav } = this.props.store.getState();
 
     const displayMovies = showFav ? fav : list;
-    console.log("list :", list);
-    console.log("fav :", fav);
-    console.log("displayMovies :", displayMovies);
+    // console.log("list :", list);
+    // console.log("fav :", fav);
+    // console.log("displayMovies :", displayMovies);
     return (
       <div className="App">
         <Navbar />
