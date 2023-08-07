@@ -19,7 +19,7 @@ export const addMovies = (movies) => {
 };
 export const addFav = (movie) => {
   return {
-    type: ADD_MOVIES,
+    type: ADD_FAV,
     movie,
   };
 };

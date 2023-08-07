@@ -4,7 +4,7 @@ import { data } from "../data";
 import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
 import { addMovies, setShowFav } from "../actions/actions";
-// import movies from "../reducers";
+// import state from "../reducers";
 class App extends React.Component {
   componentDidMount() {
     const { store } = this.props;
@@ -32,11 +32,16 @@ class App extends React.Component {
   };
   render() {
     // console.log("this props :", this.props);
-    // const { store } = this.props;
+    // const { store } = this.props;this.props
     // console.log("getState :",store.getState())
+    // const { movies } = this.props;
+    // console.log("movies :", movies);
     const { list, fav, showFav } = this.props.store.getState();
+
     const displayMovies = showFav ? fav : list;
-    // console.log("movies :", list);
+    console.log("list :", list);
+    console.log("fav :", fav);
+    console.log("displayMovies :", displayMovies);
     return (
       <div className="App">
         <Navbar />
@@ -56,18 +61,19 @@ class App extends React.Component {
             </div>
           </div>
           <div className="list">
-            {displayMovies.map((movie, index) => (
-              <MovieCard
-                movie={movie}
-                key={`movies-${index}`}
-                dispatch={this.props.store.dispatch}
-                isFavourite={this.isMovieFavourite(movie)}
-              />
-            ))}
+            {displayMovies &&
+              displayMovies.map((movie, index) => (
+                <MovieCard
+                  movie={movie}
+                  key={`movies-${index}`}
+                  dispatch={this.props.store.dispatch}
+                  isFavourite={this.isMovieFavourite(movie)}
+                />
+              ))}
           </div>
-          {displayMovies.length === 0 ? (
+          {/* {displayMovies.length === 0 ? (
             <div className="no-movies">no movies to show</div>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
     );

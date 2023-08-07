@@ -4,6 +4,7 @@ class MovieCard extends React.Component {
   handleFavouriteClick = () => {
     const { movie } = this.props;
     this.props.dispatch(addFav(movie));
+    // dispatch(addFav(movie));
   };
   handleUnfavouriteClick = () => {
     const { movie } = this.props;
@@ -38,7 +39,6 @@ class MovieCard extends React.Component {
               </button>
             )}
           </div>
-          
         </div>
       </div>
     );
