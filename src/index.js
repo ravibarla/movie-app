@@ -5,7 +5,7 @@ import App from "./component/App";
 import { applyMiddleware, createStore } from "redux";
 
 import rootReducer from "./reducers";
-
+import thunk from "redux-thunk";
 //function logger(obk,next,action)
 //logger(obj)()
 // const logger = function ({ dispatch, getState }) {
@@ -26,7 +26,22 @@ const logger =
     next(action);
   };
 // console.log("mogivies :", movies);
-const store = createStore(rootReducer, applyMiddleware(logger));
+
+//thunk
+// const thunk =
+//   ({ dispatch, getState }) =>
+//   (next) =>
+//   (action) => {
+//     //logger code
+//     // console.log("ACTION TYPE   :", action.type);
+//     if (typeof action === "function") {
+//       action(dispatch);
+//       return;
+//     }
+
+//     next(action);
+//   };
+const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
