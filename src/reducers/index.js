@@ -44,7 +44,9 @@ export function movies(state = initialMoviesState, action) {
 const initialSearchState = {
   result: {},
 };
-export function search(state = initialSearchState, action) {}
+export function search(state = initialSearchState, action) {
+  return state;
+}
 const initialRootState = {
   movies: initialMoviesState,
   search: initialSearchState,
