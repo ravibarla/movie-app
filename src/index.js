@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./component/App";
@@ -42,10 +42,24 @@ const logger =
 //     next(action);
 //   };
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
-
+export const storeContext = createContext();
+// console.log("storeContext :", storeContext);
 const root = ReactDOM.createRoot(document.getElementById("root"));
+class Provider extends React.Component {
+  render() {
+    const { store } = this.props;
+    return (
+      <storeContext.Provider value={store}>
+        {this.props.children}
+      </storeContext.Provider>
+    );
+  }
+}
 root.render(
   <React.StrictMode>
-    <App store={store} />
+    <Provider store={store}>
+      <App  />
+      
+    </Provider>
   </React.StrictMode>
 );

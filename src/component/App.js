@@ -4,6 +4,7 @@ import { data } from "../data";
 import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
 import { addMovies, setShowFav } from "../actions/actions";
+import { storeContext } from "../index";
 // import state from "../reducers";
 class App extends React.Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ class App extends React.Component {
   onChangeTab = (val) => {
     this.props.store.dispatch(setShowFav(val));
   };
+
   render() {
     // console.log("this props :", this.props);
     // const { store } = this.props;this.props
@@ -44,9 +46,10 @@ class App extends React.Component {
     // console.log("list :", list);
     // console.log("fav :", fav);
     // console.log("displayMovies :", displayMovies);
+    // return <storeContext.Consumer></storeContext.Consumer>;
     return (
       <div className="App">
-        <Navbar dispatch={this.props.store.dispatch} search={search} />
+        <Navbar  search={search} />
         <div className="main">
           <div className="tabs">
             <div
@@ -81,5 +84,13 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;
+class AppWrapper extends React.Component {
+  render() {
+    return (
+      <storeContext.Consumer>
+        {(store) => <App store={store} />}
+      </storeContext.Consumer>
+    );
+  }
+}
+export default AppWrapper;
