@@ -1,11 +1,11 @@
 import React from "react";
-// import {connect} from "redux"
+import { connect } from "react-redux";
 import "../App.css";
 import { data as movieList } from "../data";
 import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
 import { addMovies, setShowFav } from "../actions/actions";
-import { connect } from "../index";
+// import { connect } from "../index";
 // import state from "../reducers";
 class App extends React.Component {
   componentDidMount() {
@@ -102,8 +102,8 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     movies: state.movies,
-    // search: state.movies,
-    search: state.search,
+    search: state.movies,
+    // search: state.search,
   };
 }
 const connectedAppCompnent = connect(mapStateToProps)(App);
